@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { db } from '../../../database';
 import { ShoppingList } from '../../../interfaces';
-import ShoppingListModel from '../../../models/ShoppingList';
+import { ShoppingListModel } from '../../../models';
 
 type Data =
   | { message: string }
