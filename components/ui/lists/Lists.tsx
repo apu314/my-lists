@@ -25,13 +25,14 @@ export const Lists: FC<Props> = () => {
 
   return (
     <>
-      <Grid.Container gap={1} justify="center">
+      <Grid.Container gap={1} justify="flex-start">
         {
           lists.map(list => (
             <Grid
               key={list.name}
               direction="column"
-              xs={4}
+              xs={6}
+              sm={4}
             >
               <Card
                 hoverable
