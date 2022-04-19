@@ -30,7 +30,13 @@ export const MainLayout: FC<Props> = ({ children, title, description }) => {
 
       <Header />
       
-      <Container>
+      <Container
+        fluid
+        gap={0}
+        css={{
+          marginTop: '1rem',
+        }}
+      >
         {children}
       </Container>
     </>

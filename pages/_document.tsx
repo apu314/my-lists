@@ -7,7 +7,7 @@ class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const originalRenderPage = ctx.renderPage
 
-    console.log('ctx --> ', ctx)
+    // console.log('ctx --> ', ctx)
 
     // Run the React rendering logic synchronously
     ctx.renderPage = () =>
@@ -21,7 +21,7 @@ class MyDocument extends Document {
     // Run the parent `getInitialProps`, it now includes the custom `renderPage`
     const initialProps = await Document.getInitialProps(ctx)
 
-    console.log('initialProps --> ', initialProps)
+    // console.log('initialProps --> ', initialProps)
 
     return initialProps
   }
