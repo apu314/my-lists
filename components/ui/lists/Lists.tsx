@@ -1,5 +1,5 @@
 import { ShoppingList as IList } from '../../../interfaces'
-import { Card, Grid, Modal, Text } from "@nextui-org/react"
+import { Card, Grid, Modal, Text, useTheme } from "@nextui-org/react"
 import { FC, useContext, useState } from "react"
 
 import { ListsContext } from "../../../context/lists"
@@ -12,6 +12,8 @@ export interface Props {
 }
 
 export const Lists: FC<Props> = () => {
+
+  const { theme } = useTheme()
 
   const { lists } = useContext(ListsContext)
 
@@ -54,12 +56,13 @@ export const Lists: FC<Props> = () => {
         fullScreen
         css={{
           borderRadius: 0,
-          paddingTop: 0
+          paddingTop: 0,
+          backgroundColor: theme?.colors.background.value
         }}
       >
         <Modal.Header
           css={{
-            backgroundColor: '$black',
+            backgroundColor: '#111111',
           }}
         >
           <Text
