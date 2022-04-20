@@ -1,9 +1,9 @@
 import mongoose, { Model, Schema } from 'mongoose'
-import { ShoppingList } from '../interfaces'
+import { List } from '../interfaces'
 
-export interface IShoppingList extends ShoppingList {}
+export interface IList extends List {}
 
-const shoppingListSchema = new Schema({
+const ListSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -41,6 +41,6 @@ const shoppingListSchema = new Schema({
   }
 })
 
-const ShoppingListModel: Model<IShoppingList> = mongoose.models.ShoppingList || mongoose.model('ShoppingList', shoppingListSchema)
+const ListModel: Model<IList> = mongoose.models.List || mongoose.model('List', ListSchema)
 
-export default ShoppingListModel
+export default ListModel

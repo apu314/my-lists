@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { ShoppingList as List } from '../../interfaces'
+import { List as List } from '../../interfaces'
 
 
 export interface ContextProps {

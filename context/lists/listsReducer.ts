@@ -1,4 +1,4 @@
-import { ShoppingList as List } from '../../interfaces'
+import { List as List } from '../../interfaces'
 import { ListsState } from './'
 
 

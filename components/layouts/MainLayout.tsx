@@ -16,7 +16,7 @@ interface Props {
 export const MainLayout: FC<Props> = ({ children, title, description }) => {
 
   const getTitle = useMemo(() => {
-    return title ? `${title} - ShoppingLists` : 'ShoppingLists';
+    return title ? `${title} - myLists` : 'myLists';
   }, [title]);
 
   return (

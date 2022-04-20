@@ -1,1 +1,1 @@
-export { default as ShoppingListModel } from './ShoppingList';
+export { default as ListModel } from './List';

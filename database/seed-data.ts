@@ -1,16 +1,16 @@
 
 interface SeedData {
-  shoppingLists: ShoppingList[];
+  Lists: List[];
 }
 
-export interface ShoppingList {
+export interface List {
   name: string;
-  items: ShoppingListItem[]
+  items: ListItem[]
   status: string;
   createdAt: number;
 }
 
-export interface ShoppingListItem {
+export interface ListItem {
   name: string;
   quantity: number;
   isCompleted: boolean;
@@ -18,24 +18,24 @@ export interface ShoppingListItem {
 
 
 export const seedData: SeedData = {
-  shoppingLists: [
+  Lists: [
     {
       name: 'Lista compra Casa',
       items: [
         {
           name: 'Agua 8 Litros',
           quantity: 2,
-          isCompleted: false
+          isCompleted: true
         },
         {
-          name: 'Belvita',
+          name: 'Galletas Belvita',
           quantity: 1,
           isCompleted: false
         },
         {
           name: 'Fuet',
           quantity: 2,
-          isCompleted: false
+          isCompleted: true
         },
       ],
       status: 'open', // 'open' or 'closed'
@@ -45,9 +45,9 @@ export const seedData: SeedData = {
       name: 'Libros',
       items: [
         {
-          name: 'El líder que no tenía cargo',
+          name: 'El líder que no tenía cargo - Robin Sharma',
           quantity: 1,
-          isCompleted: false
+          isCompleted: true
         },
       ],
       status: 'open', // 'open' or 'closed'

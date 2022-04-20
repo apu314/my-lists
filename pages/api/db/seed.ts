@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { db } from '../../../database'
 import { seedData } from '../../../database/seed-data';
-import ShoppingList from '../../../models/ShoppingList'
+import { ListModel } from '../../../models'
 
 type Data = {
   message: string;
@@ -44,8 +44,8 @@ const seed = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   try {
     await db.connect()
-    await ShoppingList.deleteMany() // Delete all entries
-    await ShoppingList.insertMany(seedData.shoppingLists)
+    await ListModel.deleteMany() // Delete all entries
+    await ListModel.insertMany(seedData.Lists)
     await db.disconnect()    
     
     res.status(200).json({

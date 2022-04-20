@@ -1,4 +1,4 @@
-import { ShoppingList as IList } from "../../../interfaces"
+import { List as IList } from "../../../interfaces"
 
 import { FC, Fragment, useEffect, useState } from "react"
 import { Checkbox, Grid } from '@nextui-org/react'
