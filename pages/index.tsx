@@ -6,14 +6,10 @@ import { Lists } from '../components/ui/lists'
 
 import styles from '../styles/Home.module.css'
 
-
 const Home: NextPage = () => {
-
   return (
     <>
-      <MainLayout
-        title="Home"
-      >
+      <MainLayout title="Home">
         <>
           <Head>
             {/* <title>Create Next App</title> */}
@@ -21,7 +17,6 @@ const Home: NextPage = () => {
           </Head>
 
           <Lists />
-          
         </>
       </MainLayout>
     </>

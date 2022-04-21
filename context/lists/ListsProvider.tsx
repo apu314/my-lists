@@ -5,13 +5,12 @@ import { FC, useEffect, useReducer } from 'react'
 import { ListsContext, listsReducer } from './'
 import { listsApi } from '../../apis'
 
-
 export interface ListsState {
   lists: List[]
 }
 
 const LISTS_INITIAL_STATE: ListsState = {
-  lists: []
+  lists: [],
 }
 
 export interface ListsProviderProps {
@@ -19,7 +18,6 @@ export interface ListsProviderProps {
 }
 
 export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
-
   const [state, dispatch] = useReducer(listsReducer, LISTS_INITIAL_STATE)
 
   const refreshLists = async () => {
@@ -28,19 +26,17 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
     dispatch({ type: '[Lists] - Refresh Lists ', payload: data })
   }
 
-
   useEffect(() => {
     refreshLists()
   }, [])
 
-
   return (
     <ListsContext.Provider
       value={{
-        ...state
+        ...state,
       }}
     >
-     {children}
-   </ListsContext.Provider>
+      {children}
+    </ListsContext.Provider>
   )
 }

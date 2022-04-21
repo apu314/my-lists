@@ -1,21 +1,19 @@
-
 interface SeedData {
-  Lists: List[];
+  Lists: List[]
 }
 
 export interface List {
-  name: string;
+  name: string
   items: ListItem[]
-  status: string;
-  createdAt: number;
+  status: string
+  createdAt: number
 }
 
 export interface ListItem {
-  name: string;
-  quantity: number;
-  isCompleted: boolean;
+  name: string
+  quantity: number
+  isCompleted: boolean
 }
-
 
 export const seedData: SeedData = {
   Lists: [
@@ -25,21 +23,21 @@ export const seedData: SeedData = {
         {
           name: 'Agua 8 Litros',
           quantity: 2,
-          isCompleted: true
+          isCompleted: true,
         },
         {
           name: 'Galletas Belvita',
           quantity: 1,
-          isCompleted: false
+          isCompleted: false,
         },
         {
           name: 'Fuet',
           quantity: 2,
-          isCompleted: true
+          isCompleted: true,
         },
       ],
       status: 'open', // 'open' or 'closed'
-      createdAt: Date.now()
+      createdAt: Date.now(),
     },
     {
       name: 'Libros',
@@ -47,11 +45,11 @@ export const seedData: SeedData = {
         {
           name: 'El líder que no tenía cargo - Robin Sharma',
           quantity: 1,
-          isCompleted: true
+          isCompleted: true,
         },
       ],
       status: 'open', // 'open' or 'closed'
-      createdAt: Date.now()
+      createdAt: Date.now(),
     },
     {
       name: 'WorkStation',
@@ -59,17 +57,16 @@ export const seedData: SeedData = {
         {
           name: 'Monitor 27" Vertical',
           quantity: 1,
-          isCompleted: false
+          isCompleted: false,
         },
         {
           name: 'Alfombrilla ratón XL',
           quantity: 1,
-          isCompleted: false
+          isCompleted: false,
         },
       ],
       status: 'open', // 'open' or 'closed'
-      createdAt: Date.now()
+      createdAt: Date.now(),
     },
-
-  ]
+  ],
 }

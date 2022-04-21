@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose'
 
 /**
  * 0 --> disconnected
@@ -7,11 +7,10 @@ import mongoose from "mongoose"
  * 3 --> disconnecting
  */
 const mongoConnection = {
-  isConnected: 0
+  isConnected: 0,
 }
 
 export const connect = async () => {
-
   if (mongoConnection.isConnected) {
     console.log('Already connected to mongodb')
     return
@@ -49,5 +48,4 @@ export const disconnect = async () => {
   mongoConnection.isConnected = 0
 
   console.log('Disconnected from mongodb')
-
 }

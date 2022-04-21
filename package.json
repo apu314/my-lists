@@ -11,11 +11,6 @@
     "lint": "npx prettier --check .",
     "format": "npx prettier --write ."
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn format && git add -A ."
-    }
-  },
   "dependencies": {
     "@nextui-org/react": "^1.0.8-beta.5",
     "axios": "^0.26.1",

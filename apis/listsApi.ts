@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios'
 
 const listsApi = axios.create({
-  baseURL: '/api'
+  baseURL: '/api',
 })
 
 export default listsApi

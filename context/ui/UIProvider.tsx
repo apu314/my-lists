@@ -1,7 +1,6 @@
 import { FC, useReducer } from 'react'
 import { UIContext, uiReducer } from './'
 
-
 export interface UIState {
   // isDarkMode: boolean
 }
@@ -15,12 +14,9 @@ export interface UIProviderProps {
 }
 
 export const UIProvider: FC<UIProviderProps> = ({ children }) => {
-
   const [state, dispatch] = useReducer(uiReducer, UI_INITIAL_STATE)
 
-  
   // const setIsDarkMode = (isDark: boolean) => dispatch({ type: '[UI] - Toggle Dark mode', payload: isDark })
-
 
   return (
     <UIContext.Provider
@@ -29,7 +25,7 @@ export const UIProvider: FC<UIProviderProps> = ({ children }) => {
         // setIsDarkMode
       }}
     >
-     {children}
-   </UIContext.Provider>
+      {children}
+    </UIContext.Provider>
   )
 }

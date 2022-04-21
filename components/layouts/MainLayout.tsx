@@ -1,8 +1,8 @@
-import { Container } from "@nextui-org/react"
-import Head from "next/head"
-import { FC, useMemo } from "react"
+import { Container } from '@nextui-org/react'
+import Head from 'next/head'
+import { FC, useMemo } from 'react'
 
-import { Header } from '../ui/header';
+import { Header } from '../ui/header'
 
 interface Props {
   title?: string
@@ -14,10 +14,9 @@ interface Props {
 // const origin = (typeof window === 'undefined') ? '' : window.location.origin;
 
 export const MainLayout: FC<Props> = ({ children, title, description }) => {
-
   const getTitle = useMemo(() => {
-    return title ? `${title} - myLists` : 'myLists';
-  }, [title]);
+    return title ? `${title} - myLists` : 'myLists'
+  }, [title])
 
   return (
     <>
@@ -29,7 +28,7 @@ export const MainLayout: FC<Props> = ({ children, title, description }) => {
       </Head>
 
       <Header />
-      
+
       <Container
         fluid
         gap={0}

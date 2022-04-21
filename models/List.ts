@@ -6,41 +6,43 @@ export interface IList extends List {}
 const ListSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   items: [
     {
       name: {
         type: String,
-        required: true
+        required: true,
       },
       quantity: {
         type: Number,
-        required: true
+        required: true,
       },
       isCompleted: {
         type: Boolean,
         required: true,
-        default: false
-      }
-    }
+        default: false,
+      },
+    },
   ],
   status: {
     type: String,
     enum: {
       values: ['open', 'closed'],
-      message: 'Status: {VALUE}, is not a valid status. Must be either open or closed'
+      message:
+        'Status: {VALUE}, is not a valid status. Must be either open or closed',
     },
     required: true,
-    default: 'open'
+    default: 'open',
   },
   createdAt: {
     type: Number,
     required: true,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 })
 
-const ListModel: Model<IList> = mongoose.models.List || mongoose.model('List', ListSchema)
+const ListModel: Model<IList> =
+  mongoose.models.List || mongoose.model('List', ListSchema)
 
 export default ListModel

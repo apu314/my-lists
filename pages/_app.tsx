@@ -10,16 +10,14 @@ import { darkTheme, lightTheme } from '../themes'
 import '../styles/globals.css'
 import { ListsProvider } from '../context/lists'
 
-
 function MyApp({ Component, pageProps }: AppProps) {
-
   return (
     <NextThemesProvider
       defaultTheme="system"
       attribute="class"
       value={{
         light: lightTheme.className,
-        dark: darkTheme.className
+        dark: darkTheme.className,
       }}
     >
       <UIProvider>

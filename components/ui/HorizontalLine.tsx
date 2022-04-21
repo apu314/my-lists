@@ -1,12 +1,9 @@
-import { FC } from "react"
-import { useTheme } from "@nextui-org/react"
-
-
+import { FC } from 'react'
+import { useTheme } from '@nextui-org/react'
 
 export const HorizontalLine: FC = () => {
-
   const { theme } = useTheme()
-  
+
   return (
     <i
       style={{
@@ -17,7 +14,7 @@ export const HorizontalLine: FC = () => {
         // borderColor: theme?.colors.white.value,
         width: '100%',
         height: '1px',
-        margin: '0.5rem 0'
+        margin: '0.5rem 0',
       }}
     />
   )
