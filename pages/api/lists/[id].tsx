@@ -1,8 +1,9 @@
+import { List } from 'interfaces'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { db } from '../../../database'
 import { ListModel } from '../../../models'
 
-type Data = { message: string } | any
+type Data = { message: string } | List[] | List | any
 
 export default function handler(
   req: NextApiRequest,
@@ -13,7 +14,7 @@ export default function handler(
       getListsByStatus(req, res)
       break
 
-    case 'PUT':
+    case 'PATCH':
       updateList(req, res)
       break
 
@@ -42,7 +43,7 @@ const getListsByStatus = async (req: NextApiRequest, res: NextApiResponse) => {
 
 const updateList = (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query
-  const {} = req.body
+  const { body } = req
 
   if (!id) {
     return res.status(400).json({ message: 'Bad Request. Id not valid' })
@@ -50,7 +51,7 @@ const updateList = (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     db.connect()
-    const list = ListModel.findByIdAndUpdate(id, {})
+    const list = ListModel.findByIdAndUpdate(id, body)
     db.disconnect()
 
     if (!list) {

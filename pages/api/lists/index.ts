@@ -10,17 +10,35 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   switch (req.method) {
+    case 'POST':
+      createList(req, res)
+      break
+
     case 'GET':
       getAllLists(req, res)
       break
 
-    case 'PUT':
-      updateList(req, res)
-      break
-
     default:
       // Method Not Allowed
-      res.status(405).end()
+      res.status(405).json({ message: 'Method Not Allowed' })
+  }
+}
+
+const createList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  const { body } = req
+
+  try {
+    db.connect()
+    const list = await ListModel.create(body)
+    db.disconnect()
+
+    return res.status(200).json(list)
+  } catch (error) {
+    // return res.status(500).json(error)
+    console.log(error)
+    if (error instanceof ErrorResponse) {
+      return res.status(500).json({ message: error.message })
+    }
   }
 }
 
@@ -37,13 +55,7 @@ const getAllLists = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 }
 
-const updateList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  await db.connect()
-  const updatedList = await ListModel.findByIdAndUpdate<List>(
-    req.query.id,
-    req.body
-  )
-  await db.disconnect()
-
-  return res.status(200).json(updatedList)
+// ERRORS
+export class ErrorResponse {
+  constructor(public message: string, public status: number) {}
 }

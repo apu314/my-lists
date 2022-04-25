@@ -37,7 +37,7 @@ export const List: FC<Props> = ({ list }) => {
                     minHeight: 'calc(2 * var(--nextui-space-9))',
                   }}
                 >
-                  {item.name}
+                  {item.quantity} x {item.name}
                 </Checkbox>
 
                 {index !== list.items.length - 1 && <HorizontalLine />}

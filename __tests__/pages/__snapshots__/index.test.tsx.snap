@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[HomePage Test suite] should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    style="background-color: rgb(17, 17, 17); display: flex; flex-direction: row; justify-content: start; align-items: center; padding: 0px 20px; width: 100%;"
+  >
+    <a
+      class="nextui-c-bIaldF nextui-c-bIaldF-eAdznm-color-default nextui-c-bIaldF-iFdQKc-animated-true"
+      href="/"
+      style="text-decoration: none; color: rgb(244, 244, 244); font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center;"
+    >
+      <div
+        style="display: flex; align-items: baseline;"
+      >
+        <h1
+          class="nextui-c-PJLV nextui-c-PJLV-ilemjbo-css"
+        >
+          MyLists
+        </h1>
+      </div>
+    </a>
+    <span
+      aria-hidden="true"
+      class="nextui-c-gNVTSf nextui-c-gNVTSf-hakyQ-inline-false nextui-c-gNVTSf-ifQmmYN-css"
+    />
+    <label
+      class="nextui-c-STltJ nextui-c-STltJ-iuIrtc-color-default nextui-c-STltJ-JJjKI-size-md nextui-c-STltJ-bgIFDi-borderWeight-normal"
+      data-state="unchecked"
+    >
+      <input
+        class="nextui-c-PJLV nextui-c-iFHsrU nextui-switch-input"
+        data-state="unchecked"
+        tabindex="-1"
+        type="checkbox"
+      />
+      <div
+        aria-checked="false"
+        aria-disabled="false"
+        class="nextui-c-itiWTf nextui-c-huiNHE nextui-c-itiWTf-ehImnT-animated-true nextui-c-itiWTf-azaXX-cv nextui-switch nextui-switch--unchecked"
+        data-state="unchecked"
+        role="switch"
+        tabindex="0"
+      >
+        <span
+          class="nextui-c-ijDFoR nextui-switch-circle"
+        />
+      </div>
+    </label>
+  </div>
+  <div
+    class="nextui-c-fdHeMm nextui-c-fdHeMm-cFpcyF-fluid-true nextui-c-fdHeMm-dwxLNB-responsive-true nextui-c-fdHeMm-ihmjPhz-css"
+  />
+</DocumentFragment>
+`;

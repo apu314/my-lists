@@ -1,6 +1,8 @@
 {
   "name": "My Lists",
+  "start_url": "/",
   "short_name": "MyLists",
+  "display": "standalone",
   "icons": [
     {
       "src": "/icons/android-chrome-maskable-192x192.png",
@@ -21,7 +23,5 @@
   ],
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
-  "start_url": "/",
-  "display": "standalone",
   "orientation": "portrait"
 }

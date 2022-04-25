@@ -58,11 +58,8 @@ export const Header: FC<Props> = () => {
               alignItems: 'baseline',
             }}
           >
-            <Text color="white" h3>
-              My
-            </Text>
-            <Text color="white" h2>
-              Lists
+            <Text color="white" h1>
+              MyLists
             </Text>
           </div>
         </Link>
