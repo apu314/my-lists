@@ -9,12 +9,10 @@ type Data = { message: string } | List[] | List | any
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'GET':
-      getListsByStatus(req, res)
-      break
+      return getListsByStatus(req, res)
 
     case 'PATCH':
-      updateList(req, res)
-      break
+      return updateList(req, res)
 
     default:
       return res.status(405).json({ message: 'Method Not Allowed' })

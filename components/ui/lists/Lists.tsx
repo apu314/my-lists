@@ -21,8 +21,12 @@ export const Lists: FC<Props> = () => {
   return (
     <>
       <Grid.Container gap={1} justify={isLoading ? 'center' : 'flex-start'}>
-        <Grid>{isLoading && <Spinner />}</Grid>
-        <Grid xs={12} justify="flex-start">
+        {isLoading && (
+          <Grid>
+            <Spinner />
+          </Grid>
+        )}
+        <Grid xs={12} justify="flex-start" css={{ flexWrap: 'wrap' }}>
           {lists.map((list) => (
             <Grid key={list.name} direction="column" xs={6} sm={4}>
               <Card
