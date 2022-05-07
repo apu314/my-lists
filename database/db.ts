@@ -11,12 +11,12 @@ const mongoConnection = {
 }
 
 export const connect = async () => {
-  if (mongoConnection.isConnected) {
+  /* if (mongoConnection.isConnected) {
     console.log('Already connected to mongodb')
     return
-  }
+  } */
 
-  if (mongoose.connections.length > 0) {
+  if (mongoConnection.isConnected || mongoose.connections.length > 0) {
     mongoConnection.isConnected = mongoose.connections[0].readyState
 
     if (mongoConnection.isConnected === 1) {
