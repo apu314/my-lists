@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     case 'GET':
       return getListsByStatus(req, res)
 
-    case 'PATCH':
+    case 'PUT':
       return updateList(req, res)
 
     default:

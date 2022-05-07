@@ -42,7 +42,7 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
   }
 
   const mutateListItem = async (listId: string, listItem: ListItem) => {
-    const { data } = await listsApi.patch<List>(`/lists/${listId}`, listItem)
+    const { data } = await listsApi.put<List>(`/lists/${listId}`, listItem)
 
     console.log('[mutateList] --> ', data)
 
