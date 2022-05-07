@@ -1,13 +1,35 @@
 import mongoose, { Model, Schema } from 'mongoose'
 import { List } from '../interfaces'
+// import { listItemSchema } from './';
 
 export interface IList extends List {}
 
-const ListSchema = new Schema({
+// const listItemSchema = new Schema({
+//   name: {
+//     type: String,
+//     required: true,
+//   },
+//   quantity: {
+//     type: Number,
+//     required: true,
+//   },
+//   isCompleted: {
+//     type: Boolean,
+//     required: true,
+//     default: false,
+//   }
+// })
+
+const listSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
+  /* items: {
+    type: mongoose.Types.ObjectId,
+    ref: 'ListItem',
+  }, */
+  // items: [listItemSchema],
   items: [
     {
       name: {
@@ -25,12 +47,13 @@ const ListSchema = new Schema({
       },
     },
   ],
+
+  // items: [ { type: mongoose.Schema.Types.ObjectId, ref: 'ListItem' } ],
   status: {
     type: String,
     enum: {
       values: ['open', 'closed'],
-      message:
-        'Status: {VALUE}, is not a valid status. Must be either open or closed',
+      message: 'Status: {VALUE}, is not a valid status. Must be either open or closed',
     },
     required: true,
     default: 'open',
@@ -42,7 +65,6 @@ const ListSchema = new Schema({
   },
 })
 
-const ListModel: Model<IList> =
-  mongoose.models.List || mongoose.model('List', ListSchema)
+const ListModel: Model<IList> = mongoose.models.List || mongoose.model('List', listSchema)
 
 export default ListModel

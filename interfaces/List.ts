@@ -9,6 +9,7 @@ export interface List {
 export type ListStatus = 'open' | 'closed'
 
 export interface ListItem {
+  _id: string
   name: string
   quantity: number
   isCompleted: boolean

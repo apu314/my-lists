@@ -4,3 +4,11 @@ declare module '*module.css' {
   }
   export default styles
 }
+
+declare global {
+  interface Window {
+    __WB_DISABLE_DEV_LOGS: boolean
+  }
+}
+
+export {}

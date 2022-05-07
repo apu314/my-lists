@@ -1,14 +1,12 @@
-import { List } from 'interfaces'
+import { List, ListItem } from 'interfaces'
 import type { NextApiRequest, NextApiResponse } from 'next'
+
 import { db } from '../../../database'
 import { ListModel } from '../../../models'
 
 type Data = { message: string } | List[] | List | any
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'GET':
       getListsByStatus(req, res)
@@ -41,24 +39,45 @@ const getListsByStatus = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-const updateList = (req: NextApiRequest, res: NextApiResponse) => {
-  const { id } = req.query
-  const { body } = req
+const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { id } = req.query as { id: string }
+  if (!id) return res.status(400).json({ message: 'Bad Request. Id not valid' })
 
-  if (!id) {
-    return res.status(400).json({ message: 'Bad Request. Id not valid' })
-  }
+  const body = req.body as ListItem
 
   try {
+    const { _id, ...dataToUpdate } = body
+    console.log('dataToUpdate --> ', dataToUpdate)
+    console.log('_id --> ', _id)
+
     db.connect()
-    const list = ListModel.findByIdAndUpdate(id, body)
+    const updatedList = await ListModel.findOneAndUpdate(
+      {
+        _id: id,
+        items: {
+          $elemMatch: {
+            _id: _id,
+          },
+        },
+      },
+      {
+        $set: {
+          'items.$.name': dataToUpdate.name,
+          'items.$.quantity': dataToUpdate.quantity,
+          'items.$.isCompleted': dataToUpdate.isCompleted,
+        },
+      },
+      {
+        new: true,
+        upsert: false,
+      }
+    )
+
     db.disconnect()
 
-    if (!list) {
-      return res.status(404).json({ message: 'Not Found' })
-    }
+    if (!updatedList) return res.status(404).json({ message: 'Not Found' })
 
-    // Update
+    return res.status(200).json(updatedList)
   } catch (error) {
     return res.status(500).json(error)
   }

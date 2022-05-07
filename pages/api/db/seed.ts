@@ -9,10 +9,7 @@ type Data = {
   error?: any
 }
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'POST':
       return seed(req, res)
@@ -44,7 +41,7 @@ const seed = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
     await db.connect()
     await ListModel.deleteMany() // Delete all entries
-    await ListModel.insertMany(seedData.Lists)
+    await ListModel.insertMany(seedData.Lists, {})
     await db.disconnect()
 
     res.status(200).json({

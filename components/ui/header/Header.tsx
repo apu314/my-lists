@@ -1,15 +1,7 @@
 import { FC } from 'react'
 import NextLink from 'next/link'
 
-import {
-  Image,
-  Link,
-  Spacer,
-  Switch,
-  SwitchEvent,
-  Text,
-  useTheme,
-} from '@nextui-org/react'
+import { Image, Link, Spacer, Switch, SwitchEvent, Text, useTheme } from '@nextui-org/react'
 import { useTheme as useNextTheme } from 'next-themes'
 
 export interface Props {}
@@ -18,8 +10,7 @@ export const Header: FC<Props> = () => {
   const { isDark, type, theme } = useTheme()
   const { setTheme } = useNextTheme()
 
-  const handleChangeTheme = (e: SwitchEvent) =>
-    setTheme(e.target.checked ? 'dark' : 'light')
+  const handleChangeTheme = (e: SwitchEvent) => setTheme(e.target.checked ? 'dark' : 'light')
 
   return (
     <div

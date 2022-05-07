@@ -18,7 +18,7 @@ export interface ListItem {
 export const seedData: SeedData = {
   Lists: [
     {
-      name: 'Lista compra Casa',
+      name: 'Lista 1',
       items: [
         {
           name: 'Agua 8 Litros',
@@ -36,19 +36,7 @@ export const seedData: SeedData = {
           isCompleted: true,
         },
       ],
-      status: 'open', // 'open' or 'closed'
-      createdAt: Date.now(),
-    },
-    {
-      name: 'Libros',
-      items: [
-        {
-          name: 'El líder que no tenía cargo - Robin Sharma',
-          quantity: 1,
-          isCompleted: true,
-        },
-      ],
-      status: 'open', // 'open' or 'closed'
+      status: 'open',
       createdAt: Date.now(),
     },
     {
@@ -64,8 +52,77 @@ export const seedData: SeedData = {
           quantity: 1,
           isCompleted: false,
         },
+        {
+          name: 'Dock displayLink dual monitor',
+          quantity: 1,
+          isCompleted: true,
+        },
       ],
-      status: 'open', // 'open' or 'closed'
+      status: 'open',
+      createdAt: Date.now(),
+    },
+    {
+      name: 'Libros',
+      items: [
+        {
+          name: 'El líder que no tenía cargo - Robin Sharma',
+          quantity: 1,
+          isCompleted: false,
+        },
+      ],
+      status: 'open',
+      createdAt: Date.now(),
+    },
+    {
+      name: 'Compra casa',
+      items: [
+        {
+          name: 'Agua 8 Litros',
+          quantity: 2,
+          isCompleted: false,
+        },
+        {
+          name: 'Galletas Belvita',
+          quantity: 1,
+          isCompleted: true,
+        },
+        {
+          name: 'Calabacín',
+          quantity: 4,
+          isCompleted: false,
+        },
+        {
+          name: 'Cous Cous',
+          quantity: 1,
+          isCompleted: false,
+        },
+        {
+          name: 'Huevos',
+          quantity: 6,
+          isCompleted: false,
+        },
+        {
+          name: 'Inés Rosales',
+          quantity: 1,
+          isCompleted: false,
+        },
+        {
+          name: 'Aguacates',
+          quantity: 4,
+          isCompleted: false,
+        },
+        {
+          name: 'Bolsas de basura',
+          quantity: 1,
+          isCompleted: false,
+        },
+        {
+          name: 'Heets teak',
+          quantity: 1,
+          isCompleted: false,
+        },
+      ],
+      status: 'open',
       createdAt: Date.now(),
     },
   ],

@@ -1,45 +1,47 @@
 import { List as IList } from '../../../interfaces'
 import { Card, Grid, Modal, Text, useTheme } from '@nextui-org/react'
-import { FC, useContext, useState } from 'react'
+import { FC, Suspense, useContext, useState } from 'react'
 
 import { ListsContext } from '../../../context/lists'
 
 import { List } from './'
 import { HorizontalLine } from '../'
+import { Spinner } from '../spinner'
 
 export interface Props {}
 
 export const Lists: FC<Props> = () => {
   const { theme } = useTheme()
 
-  const { lists } = useContext(ListsContext)
+  const { lists, isLoading, activeList, toggleActiveList } = useContext(ListsContext)
 
-  const [selectedList, setSelectedList] = useState<IList | null>(null)
-
-  const handleClickButton = (list: IList) => setSelectedList(list)
-  const handleCloseModal = () => setSelectedList(null)
+  const handleClickButton = (list: IList) => toggleActiveList(list)
+  const handleCloseModal = () => toggleActiveList()
 
   return (
     <>
-      <Grid.Container gap={1} justify="flex-start">
-        {lists.map((list) => (
-          <Grid key={list.name} direction="column" xs={6} sm={4}>
-            <Card
-              hoverable
-              onClick={() => handleClickButton(list)}
-              css={{
-                cursor: 'pointer',
-              }}
-              role="button"
-            >
-              {list.name}
-            </Card>
-          </Grid>
-        ))}
+      <Grid.Container gap={1} justify={isLoading ? 'center' : 'flex-start'}>
+        <Grid>{isLoading && <Spinner />}</Grid>
+        <Grid xs={12} justify="flex-start">
+          {lists.map((list) => (
+            <Grid key={list.name} direction="column" xs={6} sm={4}>
+              <Card
+                hoverable
+                onClick={() => handleClickButton(list)}
+                css={{
+                  cursor: 'pointer',
+                }}
+                role="button"
+              >
+                {list.name}
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Grid.Container>
 
       <Modal
-        open={!!selectedList}
+        open={!!activeList}
         onClose={handleCloseModal}
         closeButton
         fullScreen
@@ -55,13 +57,13 @@ export const Lists: FC<Props> = () => {
           }}
         >
           <Text id="modal-title" size={18} b color="$white">
-            {selectedList ? selectedList.name : ''}
+            {activeList ? activeList.name : ''}
           </Text>
         </Modal.Header>
 
         {/* <HorizontalLine /> */}
 
-        <Modal.Body>{selectedList && <List list={selectedList} />}</Modal.Body>
+        <Modal.Body>{activeList && <List list={activeList} />}</Modal.Body>
       </Modal>
     </>
   )
