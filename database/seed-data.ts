@@ -18,20 +18,20 @@ export interface ListItem {
 export const seedData: SeedData = {
   Lists: [
     {
-      name: 'Lista 1',
+      name: 'Test list 1',
       items: [
         {
-          name: 'Agua 8 Litros',
+          name: 'Test list item 1',
           quantity: 2,
           isCompleted: true,
         },
         {
-          name: 'Galletas Belvita',
+          name: 'Test list item 2',
           quantity: 1,
           isCompleted: false,
         },
         {
-          name: 'Fuet',
+          name: 'Test list item 3',
           quantity: 2,
           isCompleted: true,
         },
@@ -40,20 +40,20 @@ export const seedData: SeedData = {
       createdAt: Date.now(),
     },
     {
-      name: 'WorkStation',
+      name: 'Test list 2',
       items: [
         {
-          name: 'Monitor 27" Vertical',
+          name: 'Test list item 1',
           quantity: 1,
           isCompleted: false,
         },
         {
-          name: 'Alfombrilla ratón XL',
+          name: 'Test list item 2',
           quantity: 1,
           isCompleted: false,
         },
         {
-          name: 'Dock displayLink dual monitor',
+          name: 'Test list item 3',
           quantity: 1,
           isCompleted: true,
         },
@@ -62,10 +62,10 @@ export const seedData: SeedData = {
       createdAt: Date.now(),
     },
     {
-      name: 'Libros',
+      name: 'Test list 3',
       items: [
         {
-          name: 'El líder que no tenía cargo - Robin Sharma',
+          name: 'Test list item 1',
           quantity: 1,
           isCompleted: false,
         },
@@ -74,50 +74,50 @@ export const seedData: SeedData = {
       createdAt: Date.now(),
     },
     {
-      name: 'Compra casa',
+      name: 'Test list 4',
       items: [
         {
-          name: 'Agua 8 Litros',
+          name: 'Test list item 1',
           quantity: 2,
           isCompleted: false,
         },
         {
-          name: 'Galletas Belvita',
+          name: 'Test list item 2',
           quantity: 1,
           isCompleted: true,
         },
         {
-          name: 'Calabacín',
+          name: 'Test list item 3',
           quantity: 4,
           isCompleted: false,
         },
         {
-          name: 'Cous Cous',
+          name: 'Test list item 4',
           quantity: 1,
           isCompleted: false,
         },
         {
-          name: 'Huevos',
+          name: 'Test list item 5',
           quantity: 6,
           isCompleted: false,
         },
         {
-          name: 'Inés Rosales',
+          name: 'Test list item 6',
           quantity: 1,
           isCompleted: false,
         },
         {
-          name: 'Aguacates',
+          name: 'Test list item 7',
           quantity: 4,
           isCompleted: false,
         },
         {
-          name: 'Bolsas de basura',
+          name: 'Test list item 8',
           quantity: 1,
           isCompleted: false,
         },
         {
-          name: 'Heets teak',
+          name: 'Test list item 9',
           quantity: 1,
           isCompleted: false,
         },
