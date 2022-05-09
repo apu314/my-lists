@@ -68,15 +68,20 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
       {
         new: true,
         upsert: false,
+      },
+      (error, result) => {
+        if (error) return res.status(500).json(error)
+
+        return res.status(200).json(result)
       }
     )
-    await updatedList?.save()
+    // const list = await updatedList?.save()
 
     db.disconnect()
 
     if (!updatedList) return res.status(404).json({ message: 'Not Found' })
 
-    return res.status(200).json(updatedList.toJSON())
+    // return res.status(200).json(list)
   } catch (error) {
     return res.status(500).json(error)
   }
