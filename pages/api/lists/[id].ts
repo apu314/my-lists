@@ -70,6 +70,7 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
         upsert: false,
       }
     )
+    await updatedList?.save()
 
     db.disconnect()
 
