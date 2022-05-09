@@ -77,6 +77,6 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(200).json(updatedList)
   } catch (error) {
-    return res.status(500).json(error)
+    return res.status(500).json({ message: 'Algo pasó', error })
   }
 }
