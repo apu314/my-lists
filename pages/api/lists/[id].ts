@@ -48,7 +48,7 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log('dataToUpdate --> ', dataToUpdate)
     console.log('_id --> ', _id)
 
-    db.connect()
+    await db.connect()
     const updatedList = await ListModel.findOneAndUpdate(
       {
         _id: id,
@@ -68,17 +68,10 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
       {
         new: true,
         // upsert: false,
-      },
-      (error, result) => {
-        if (error) return res.status(500).json(error)
-
-        return res.status(200).json(result)
       }
     )
-    // const list = await updatedList?.save()
 
-    db.disconnect()
-    return
+    await db.disconnect()
 
     if (!updatedList) return res.status(404).json({ message: 'Not Found' })
 
