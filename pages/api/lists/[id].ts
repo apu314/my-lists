@@ -6,13 +6,13 @@ import { ListModel } from '../../../models'
 
 type Data = { message: string } | List[] | List | any
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'GET':
-      return await getListsByStatus(req, res)
+      return getListsByStatus(req, res)
 
     case 'PUT':
-      return await updateList(req, res)
+      return updateList(req, res)
 
     default:
       return res.status(405).json({ message: 'Method Not Allowed' })
@@ -75,7 +75,7 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!updatedList) return res.status(404).json({ message: 'Not Found' })
 
-    return res.status(200).json(updatedList)
+    return res.status(200).json(updatedList.toJSON())
   } catch (error) {
     return res.status(500).json(error)
   }
