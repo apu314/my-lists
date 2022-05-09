@@ -42,12 +42,15 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
   }
 
   const mutateListItem = async (listId: string, listItem: ListItem) => {
-    const { data } = await listsApi.put<List>(`/lists/${listId}`, listItem)
+    try {
+      const { data } = await listsApi.put<List>(`/lists/${listId}`, listItem)
+      console.log('[mutateList] --> ', data)
 
-    console.log('[mutateList] --> ', data)
-
-    dispatch({ type: '[Lists] - Toggle Active List ', payload: data })
-    dispatch({ type: '[Lists] - Update List ', payload: data })
+      dispatch({ type: '[Lists] - Toggle Active List ', payload: data })
+      dispatch({ type: '[Lists] - Update List ', payload: data })
+    } catch (error) {
+      console.log('[mutateList | ERROR ] --> ', error)
+    }
   }
 
   useEffect(() => {
