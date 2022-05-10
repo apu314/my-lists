@@ -1,4 +1,4 @@
-import { List as List, ListItem } from '../../interfaces'
+import { List as List } from '../../interfaces'
 import { ListsState } from './'
 
 type ListsActionType =
@@ -53,14 +53,7 @@ const mutateList = (state: ListsState, action: { type: '[Lists] - Update List ';
     return list
   })
 
-  console.log('updatedLists --> ', updatedLists)
+  console.log('[listsReducer - mutateList] updatedLists --> ', updatedLists)
 
   return updatedLists
-
-  /* return state.lists.map(list => {
-    if (list._id === action.payload._id) {
-      return action.payload
-    }
-    return list
-  }) */
 }

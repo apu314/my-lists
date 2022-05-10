@@ -9,6 +9,8 @@ export interface ContextProps {
 
   toggleActiveList: (list?: List) => void
   createList: (list: List) => void
+
+  mutateList: (list: List) => void
   mutateListItem: (listId: string, listItem: ListItem) => void
 }
 

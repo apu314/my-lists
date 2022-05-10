@@ -41,6 +41,41 @@ const updateList = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query as { id: string }
   if (!id) return res.status(400).json({ message: 'Bad Request. Id not valid' })
 
+  const body = req.body as List
+
+  try {
+    const { _id, ...dataToUpdate } = body
+
+    await db.connect()
+
+    const updatedList = await ListModel.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          ...dataToUpdate,
+        },
+      },
+      {
+        new: true,
+      }
+    )
+
+    await db.disconnect()
+
+    if (!updatedList) return res.status(404).json({ message: 'Not Found' })
+
+    return res.status(200).json(updatedList)
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+}
+
+const updateListItem = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { id } = req.query as { id: string }
+  if (!id) return res.status(400).json({ message: 'Bad Request. Id not valid' })
+
   const body = req.body as ListItem
 
   try {

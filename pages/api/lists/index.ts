@@ -20,17 +20,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
 }
 
 const createList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  // const {items, ...rest} = req.body as List
-  const { items, ...rest } = req.body as List
+  // const { items, ...rest } = req.body as List
+  const list = req.body as List
 
   try {
     // list.items = items.map(item => new ListItemModel(item))
     // const list = new ListModel(rest)
     // list.items = [...items]
-    const list = new ListModel(req.body)
+    const newList = new ListModel(list)
     db.connect()
     // const list = await ListModel.create(body)
-    const savedList = await list.save()
+    const savedList = await newList.save()
     db.disconnect()
 
     return res.status(200).json(savedList)
