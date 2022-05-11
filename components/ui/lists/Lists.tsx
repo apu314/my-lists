@@ -1,6 +1,6 @@
 import { List as IList } from '../../../interfaces'
 import { Card, Grid, Modal, Text, useTheme } from '@nextui-org/react'
-import { FC, useContext } from 'react'
+import { FC, useContext, useState } from 'react'
 
 import { ListsContext } from '../../../context/lists'
 
@@ -14,8 +14,13 @@ export const Lists: FC<Props> = () => {
 
   const { lists, isLoading, activeList, toggleActiveList } = useContext(ListsContext)
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const handleClickButton = (list: IList) => toggleActiveList(list)
-  const handleCloseModal = () => toggleActiveList()
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    toggleActiveList()
+  }
 
   return (
     <>
@@ -44,7 +49,7 @@ export const Lists: FC<Props> = () => {
       </Grid.Container>
 
       <Modal
-        open={!!activeList}
+        open={isModalOpen && !!activeList}
         onClose={handleCloseModal}
         closeButton
         fullScreen
