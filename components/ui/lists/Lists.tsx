@@ -1,11 +1,10 @@
 import { List as IList } from '../../../interfaces'
 import { Card, Grid, Modal, Text, useTheme } from '@nextui-org/react'
-import { FC, Suspense, useContext, useState } from 'react'
+import { FC, useContext } from 'react'
 
 import { ListsContext } from '../../../context/lists'
 
 import { List } from './'
-import { HorizontalLine } from '../'
 import { Spinner } from '../spinner'
 
 export interface Props {}
@@ -64,8 +63,6 @@ export const Lists: FC<Props> = () => {
             {activeList ? activeList.name : ''}
           </Text>
         </Modal.Header>
-
-        {/* <HorizontalLine /> */}
 
         <Modal.Body>{activeList && <List list={activeList} />}</Modal.Body>
       </Modal>

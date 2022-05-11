@@ -3,6 +3,7 @@ import NextLink from 'next/link'
 
 import { Image, Link, Spacer, Switch, SwitchEvent, Text, useTheme } from '@nextui-org/react'
 import { useTheme as useNextTheme } from 'next-themes'
+import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs'
 
 export interface Props {}
 
@@ -15,7 +16,7 @@ export const Header: FC<Props> = () => {
   return (
     <div
       style={{
-        backgroundColor: theme?.colors.gray900.value,
+        backgroundColor: theme?.colors.black.value,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'start',
@@ -28,7 +29,7 @@ export const Header: FC<Props> = () => {
         <Link
           style={{
             textDecoration: 'none',
-            color: theme?.colors.gray100.value,
+            color: theme?.colors.black.value,
             fontSize: '1.5rem',
             fontWeight: 'bold',
             display: 'flex',
@@ -58,7 +59,13 @@ export const Header: FC<Props> = () => {
 
       <Spacer css={{ flex: 1 }} />
 
-      <Switch checked={isDark} onChange={handleChangeTheme} />
+      <Switch
+        checked={isDark}
+        onChange={handleChangeTheme}
+        color="primary"
+        iconOn={<BsFillSunFill />}
+        iconOff={<BsFillMoonFill />}
+      />
     </div>
   )
 }

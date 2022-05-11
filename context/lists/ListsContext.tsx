@@ -11,7 +11,7 @@ export interface ContextProps {
   createList: (list: List) => void
 
   mutateList: (list: List) => void
-  mutateListItem: (listId: string, listItem: ListItem) => void
+  mutateListItem: (istItem: ListItem) => void
 }
 
 export const ListsContext = createContext({} as ContextProps)

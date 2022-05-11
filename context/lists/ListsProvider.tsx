@@ -53,16 +53,25 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
     }
   }
 
-  const mutateListItem = async (listId: string, listItem: ListItem) => {
-    try {
-      const { data } = await listsApi.put<List>(`/lists/${listId}`, listItem)
-      console.log('[mutateList] --> ', data)
-
-      dispatch({ type: '[Lists] - Toggle Active List ', payload: data })
-      dispatch({ type: '[Lists] - Update List ', payload: data })
-    } catch (error) {
-      console.log('[mutateList | ERROR ] --> ', error)
+  const mutateListItem = async (listItem: ListItem) => {
+    const listToUpdate = state.lists.find((list) => list._id === state.activeList?._id)
+    if (!listToUpdate) {
+      console.log('List not found')
+      return
     }
+    const updatedListItems = listToUpdate.items.map((item) => {
+      if (item._id === listItem._id) {
+        return listItem
+      }
+      return item
+    })
+
+    const updatedList: List = {
+      ...listToUpdate,
+      items: updatedListItems,
+    }
+
+    mutateList(updatedList)
   }
 
   useEffect(() => {
