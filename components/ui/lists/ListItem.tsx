@@ -12,19 +12,19 @@ interface Props {
 export const ListItem: FC<Props> = ({ item }) => {
   const { mutateList, mutateListItem, activeList } = useContext(ListsContext)
 
+  const [isMounted, setIsMounted] = useState(false)
   const [listItem, setListItem] = useState<IListItem>(item)
-  // ?
   const [isSelected, setIsSelected] = useState(item.isCompleted)
-  const [quantity, setQuantity] = useState(item.quantity)
-  const [name, setName] = useState(item.name)
 
   useEffect(() => {
+    if (!isMounted) return
     if (listItem !== item) {
       console.log('por aquí pasas?')
       mutateListItem(listItem)
     }
+    setIsMounted(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [item, mutateListItem])
+  }, [isMounted, item, mutateListItem])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement> | boolean) => {
     if (typeof e === 'boolean') {
