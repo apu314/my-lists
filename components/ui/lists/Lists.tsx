@@ -16,7 +16,10 @@ export const Lists: FC<Props> = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleClickButton = (list: IList) => toggleActiveList(list)
+  const handleClickButton = (list: IList) => {
+    setIsModalOpen(true)
+    toggleActiveList(list)
+  }
   const handleCloseModal = () => {
     setIsModalOpen(false)
     toggleActiveList()
