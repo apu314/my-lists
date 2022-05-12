@@ -10,20 +10,10 @@ interface Props {
 }
 
 export const ListItem: FC<Props> = ({ item }) => {
-  const { mutateList, mutateListItem, activeList } = useContext(ListsContext)
+  const { mutateList, activeList } = useContext(ListsContext)
 
-  const [isMounted, setIsMounted] = useState<boolean>(false)
   const [listItem, setListItem] = useState<IListItem>(item)
   const [isSelected, setIsSelected] = useState<boolean>(item.isCompleted)
-
-  useEffect(() => {
-    if (isMounted && listItem !== item) {
-      console.log('por aquí pasas?')
-      mutateListItem(listItem)
-    }
-    setIsMounted(true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMounted, item, listItem, mutateListItem])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement> | boolean) => {
     if (typeof e === 'boolean') {
