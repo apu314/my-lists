@@ -1,35 +1,13 @@
 import mongoose, { Model, Schema } from 'mongoose'
 import { List } from '../interfaces'
-// import { listItemSchema } from './';
 
 export interface IList extends List {}
-
-// const listItemSchema = new Schema({
-//   name: {
-//     type: String,
-//     required: true,
-//   },
-//   quantity: {
-//     type: Number,
-//     required: true,
-//   },
-//   isCompleted: {
-//     type: Boolean,
-//     required: true,
-//     default: false,
-//   }
-// })
 
 const listSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
-  /* items: {
-    type: mongoose.Types.ObjectId,
-    ref: 'ListItem',
-  }, */
-  // items: [listItemSchema],
   items: [
     {
       name: {
@@ -47,8 +25,6 @@ const listSchema = new Schema({
       },
     },
   ],
-
-  // items: [ { type: mongoose.Schema.Types.ObjectId, ref: 'ListItem' } ],
   status: {
     type: String,
     enum: {

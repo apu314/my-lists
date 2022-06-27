@@ -31,7 +31,8 @@ export const connect = async () => {
 
   mongoConnection.isConnected = 1
 
-  console.log('Connected to mongodb: ', process.env.MONGO_DB_URL || '')
+  console.log('Connected to mongodb')
+  // console.log('Connected to mongodb: ', process.env.MONGO_DB_URL || '')
 }
 
 export const disconnect = async () => {

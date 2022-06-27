@@ -1,4 +1,4 @@
-import { List, ListItem } from 'interfaces'
+import { List, IListItem } from 'interfaces'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { db } from '../../../database'
@@ -76,7 +76,7 @@ const updateListItem = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query as { id: string }
   if (!id) return res.status(400).json({ message: 'Bad Request. Id not valid' })
 
-  const body = req.body as ListItem
+  const body = req.body as IListItem
 
   try {
     const { _id, ...dataToUpdate } = body

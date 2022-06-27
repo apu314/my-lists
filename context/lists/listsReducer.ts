@@ -3,7 +3,7 @@ import { ListsState } from './'
 
 type ListsActionType =
   | { type: '[Lists] - Refresh Lists '; payload: List[] }
-  | { type: '[Lists] - Toggle Active List '; payload: List | null }
+  | { type: '[Lists] - Toggle Active List '; payload?: List }
   | { type: '[Lists] - Add List '; payload: List }
   | { type: '[Lists] - Update List '; payload: List }
 
@@ -29,10 +29,9 @@ export const listsReducer = (state: ListsState, action: ListsActionType): ListsS
       }
 
     case '[Lists] - Update List ':
-      console.log('[Lists] - Update List ', { ...action.payload })
       return {
         ...state,
-        lists: mutateList(state, action),
+        lists: mutateList(state, action.payload),
       }
 
     default:
@@ -40,20 +39,28 @@ export const listsReducer = (state: ListsState, action: ListsActionType): ListsS
   }
 }
 
-const mutateList = (state: ListsState, action: { type: '[Lists] - Update List '; payload: List }): List[] => {
-  console.log('action.payload', { ...action.payload })
+// TODO: Accept only the list we want to update
+// const mutatedIndex = state.findIndex((item) => item.id === mutatedItem.id);
+const mutateList = (state: ListsState, payload: List): List[] => {
+  console.log('🚀 ~ file: listsReducer.ts ~ line 47 ~ payload', { ...payload })
+
   const { lists } = state
 
-  const updatedLists = lists.map((list) => {
+  const listIndexToUpdate = lists.findIndex((item) => item._id === payload._id)
+
+  lists[listIndexToUpdate] = payload
+
+  /* const updatedLists = lists.map((list) => {
     if (list._id === action.payload._id) {
       return {
         ...action.payload,
       }
     }
     return list
-  })
+  }) */
 
-  console.log('[listsReducer - mutateList] updatedLists --> ', updatedLists)
+  console.log('🚀 ~ file: listsReducer.ts ~ line 65 ~ lists', lists)
 
-  return updatedLists
+  // return updatedLists
+  return lists
 }

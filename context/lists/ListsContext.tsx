@@ -1,17 +1,19 @@
-import { List as List, ListItem } from '../../interfaces'
+import { List as IList, IListItem } from '../../interfaces'
 
 import { createContext } from 'react'
 
 export interface ContextProps {
-  lists: List[]
-  activeList: List | null
+  lists: IList[]
+  activeList?: IList
   isLoading: boolean
 
-  toggleActiveList: (list?: List) => void
-  createList: (list: List) => void
+  toggleActiveList: (list?: IList) => void
+  createList: (list: IList) => void
 
-  mutateList: (list: List) => void
-  mutateListItem: (istItem: ListItem) => void
+  mutateList: (list: IList) => void
+  mutateListItem: (istItem: IListItem) => void
+
+  updateActiveListItem: (listItem: IListItem) => void
 }
 
 export const ListsContext = createContext({} as ContextProps)

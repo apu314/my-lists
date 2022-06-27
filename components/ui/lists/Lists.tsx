@@ -16,7 +16,7 @@ export const Lists: FC<Props> = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleClickButton = (list: IList) => {
+  const handleOpenList = (list: IList) => {
     setIsModalOpen(true)
     toggleActiveList(list)
   }
@@ -38,7 +38,7 @@ export const Lists: FC<Props> = () => {
             <Grid key={list.name} direction="column" xs={6} sm={4}>
               <Card
                 hoverable
-                onClick={() => handleClickButton(list)}
+                onClick={() => handleOpenList(list)}
                 css={{
                   cursor: 'pointer',
                 }}

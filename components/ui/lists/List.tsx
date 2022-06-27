@@ -19,11 +19,11 @@ export const List: FC<Props> = ({ list }) => {
           {!list ? (
             <Spinner />
           ) : (
-            list.items.map((item, position) => (
+            list.items.map((item, index) => (
               <Fragment key={item._id}>
-                <ListItem item={item} />
+                <ListItem index={index} item={item} />
 
-                {position !== list.items.length - 1 && <HorizontalLine />}
+                {index !== list.items.length - 1 && <HorizontalLine />}
               </Fragment>
             ))
           )}

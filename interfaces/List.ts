@@ -1,14 +1,14 @@
 export interface List {
   _id: string
   name: string
-  items: ListItem[]
+  items: IListItem[]
   status: ListStatus
   createdAt: number
 }
 
 export type ListStatus = 'open' | 'closed'
 
-export interface ListItem {
+export interface IListItem {
   _id: string
   name: string
   quantity: number

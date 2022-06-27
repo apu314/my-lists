@@ -1,29 +1,41 @@
-import type { List, ListItem as IListItem } from 'interfaces'
+import type { IListItem } from 'interfaces'
 
 import { ChangeEvent, FC, useContext, useEffect, useState } from 'react'
+
 import { Checkbox, Grid } from '@nextui-org/react'
 
 import { ListsContext } from '../../../context/lists/ListsContext'
+import useDebounce from '../../../hooks/useDebounce'
 
 interface Props {
+  index: number
   item: IListItem
+  handleInputChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const ListItem: FC<Props> = ({ item }) => {
-  const { mutateList, activeList } = useContext(ListsContext)
+// export const ListItem: FC<Props> = ({ index, update, item }) => {
+export const ListItem: FC<Props> = ({ index, item }) => {
+  const { updateActiveListItem, activeList } = useContext(ListsContext)
 
   const [listItem, setListItem] = useState<IListItem>(item)
-  const [isSelected, setIsSelected] = useState<boolean>(item.isCompleted)
+  const debouncedListItem = useDebounce(listItem, 1500)
+
+  // const [isSelected, setIsSelected] = useState<boolean>(item.isCompleted)
+  // const debouncedIsCompleted = useDebounce(isSelected, 500)
+  // const [quantity, setQuantity] = useState(item.quantity)
+  // const [name, setName] = useState(item.name)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement> | boolean) => {
+    console.log('---> CHANGED <---', e)
     if (typeof e === 'boolean') {
-      console.log('hola!!!')
-      setIsSelected(e)
+      // Checkbox
+      // setIsSelected(e)
       setListItem({
         ...listItem,
         isCompleted: e,
       })
     } else {
+      // Other inputs
       const value = e.currentTarget.value
       setListItem({
         ...listItem,
@@ -31,18 +43,49 @@ export const ListItem: FC<Props> = ({ item }) => {
       })
     }
 
-    const updatedList: List = {
-      ...activeList!,
-      items: activeList!.items.map((item, i) => (item._id === listItem._id ? listItem : item)),
-    }
-
-    mutateList(updatedList)
+    // debounce(handleSubmit((data) => update(index, data)))
   }
+
+  // const updateList = useCallback(() => {
+  //   const updatedList: List = {
+  //     ...activeList!,
+  //     items: activeList!.items.map((item, i) => (item._id === listItem._id ? listItem : item)),
+  //   }
+  //   console.log('[ListItem] updatedList --> ', updatedList)
+
+  //   mutateList(updatedList)
+  // }, [activeList, listItem, mutateList])
+
+  // const updateList = useCallback((listItem: IListItem) => {
+  //   const updatedList: List = {
+  //     ...activeList!,
+  //     items: activeList!.items.map((_item, i) => (_item._id === item._id ? listItem : item)),
+  //   }
+  //   // console.log('[ListItem] updatedList --> ', updatedList)
+
+  //   mutateList(updatedList)
+  // }, [activeList, item, mutateList])
+
+  // useEffect(() => {
+  //   if (debouncedListItem) {
+  //     updateList()
+  //   }
+  // }, [debouncedListItem])
+
+  useEffect(() => {
+    updateActiveListItem(debouncedListItem)
+  }, [debouncedListItem, updateActiveListItem])
+
+  // useEffect(() => {
+  //   updateActiveListItem({
+  //     ...item,
+  //     isCompleted: debouncedIsCompleted,
+  //   })
+  // }, [debouncedIsCompleted, item, updateActiveListItem])
 
   return (
     <>
       <Grid
-        key={item._id}
         css={{
           display: 'flex',
           flexDirection: 'row',
@@ -54,7 +97,7 @@ export const ListItem: FC<Props> = ({ item }) => {
             aria-label={`list item checkbox`}
             value={listItem._id}
             label={undefined}
-            isSelected={isSelected}
+            isSelected={listItem.isCompleted}
             css={{
               marginRight: '0.5rem',
             }}
@@ -90,9 +133,9 @@ export const ListItem: FC<Props> = ({ item }) => {
                   fontSize: '1.15rem',
                   outline: 'none',
                 }}
-                onChange={handleInputChange}
                 name="quantity"
                 value={listItem.quantity}
+                onChange={handleInputChange}
               />
             </div>
 
@@ -133,6 +176,19 @@ export const ListItem: FC<Props> = ({ item }) => {
             </div>
           </div>
         </>
+
+        <div
+          style={{
+            width: '100%',
+          }}
+        >
+          <p>isSelected: {`${listItem.isCompleted}`}</p>
+          <p>debouncedIsCompleted: {`${debouncedListItem.isCompleted}`}</p>
+          <p>quantity: {`${listItem.quantity}`}</p>
+          <p>debouncedQuantity: {`${debouncedListItem.quantity}`}</p>
+          <p>name: {`${listItem.name}`}</p>
+          <p>debouncedName: {`${debouncedListItem.name}`}</p>
+        </div>
       </Grid>
     </>
   )

@@ -1,4 +1,4 @@
-import { List, ListItem } from '../../interfaces'
+import { List, IListItem } from '../../interfaces'
 
 import { FC, useEffect, useReducer, useState } from 'react'
 
@@ -7,12 +7,12 @@ import { listsApi } from '../../apis'
 
 export interface ListsState {
   lists: List[]
-  activeList: List | null
+  activeList?: List
 }
 
 const LISTS_INITIAL_STATE: ListsState = {
   lists: [],
-  activeList: null,
+  activeList: undefined,
 }
 
 export interface ListsProviderProps {
@@ -31,7 +31,7 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
     setIsloading(false)
   }
 
-  const toggleActiveList = (list: List | null = null) => {
+  const toggleActiveList = (list?: List) => {
     dispatch({ type: '[Lists] - Toggle Active List ', payload: list })
   }
 
@@ -41,10 +41,31 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
     dispatch({ type: '[Lists] - Add List ', payload: data })
   }
 
+  const updateActiveListItem = (listItem: IListItem) => {
+    const { activeList } = state
+
+    const updatedList: List = {
+      ...activeList!,
+      items: activeList!.items.map((_item) => {
+        if (_item._id !== listItem._id) return _item
+
+        return listItem
+      }),
+    }
+    // console.log('[ListItem] updatedList --> ', updatedList)
+    if (JSON.stringify(updatedList) === JSON.stringify(activeList)) {
+      console.log('🟢 NO ACTUALIZA DB 🟢', JSON.stringify(updatedList) === JSON.stringify(activeList))
+      return
+    }
+
+    console.log('⛔️ ACTUALIZA DB ⛔️', JSON.stringify(updatedList) === JSON.stringify(activeList))
+    mutateList(updatedList)
+  }
+
   const mutateList = async (list: List) => {
     try {
       const { data } = await listsApi.put<List>(`/lists/${list._id}`, list)
-      console.log('[mutateList] --> ', data)
+      console.log('🚀 ~ file: ListsProvider.tsx ~ line 48 ~ mutateList ~ data', data)
 
       dispatch({ type: '[Lists] - Toggle Active List ', payload: data })
       dispatch({ type: '[Lists] - Update List ', payload: data })
@@ -53,7 +74,7 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
     }
   }
 
-  const mutateListItem = async (listItem: ListItem) => {
+  const mutateListItem = async (listItem: IListItem) => {
     const listToUpdate = state.lists.find((list) => list._id === state.activeList?._id)
     if (!listToUpdate) {
       console.log('List not found')
@@ -84,6 +105,7 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
         ...state,
         toggleActiveList,
         createList,
+        updateActiveListItem,
         mutateList,
         mutateListItem,
         isLoading,
