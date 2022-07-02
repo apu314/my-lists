@@ -53,6 +53,8 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
       }),
     }
     // console.log('[ListItem] updatedList --> ', updatedList)
+    // ! ...¿debería crear un useEffect para la lista seleccionada? y quizá mejor usar el debounce aquí
+    dispatch({ type: '[Lists] - Toggle Active List ', payload: updatedList })
     if (JSON.stringify(updatedList) === JSON.stringify(activeList)) {
       console.log('🟢 NO ACTUALIZA DB 🟢', JSON.stringify(updatedList) === JSON.stringify(activeList))
       return
@@ -67,7 +69,7 @@ export const ListsProvider: FC<ListsProviderProps> = ({ children }) => {
       const { data } = await listsApi.put<List>(`/lists/${list._id}`, list)
       console.log('🚀 ~ file: ListsProvider.tsx ~ line 48 ~ mutateList ~ data', data)
 
-      dispatch({ type: '[Lists] - Toggle Active List ', payload: data })
+      // dispatch({ type: '[Lists] - Toggle Active List ', payload: data })
       dispatch({ type: '[Lists] - Update List ', payload: data })
     } catch (error) {
       console.log('[mutateList | ERROR ] --> ', error)

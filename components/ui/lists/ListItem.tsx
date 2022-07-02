@@ -18,7 +18,7 @@ export const ListItem: FC<Props> = ({ index, item }) => {
   const { updateActiveListItem, activeList } = useContext(ListsContext)
 
   const [listItem, setListItem] = useState<IListItem>(item)
-  const debouncedListItem = useDebounce(listItem, 1500)
+  const { debouncedValue: debouncedListItem, cancel } = useDebounce(listItem, 1500)
 
   // const [isSelected, setIsSelected] = useState<boolean>(item.isCompleted)
   // const debouncedIsCompleted = useDebounce(isSelected, 500)
@@ -73,8 +73,9 @@ export const ListItem: FC<Props> = ({ index, item }) => {
   // }, [debouncedListItem])
 
   useEffect(() => {
+    if (JSON.stringify(debouncedListItem) === JSON.stringify(listItem)) return
     updateActiveListItem(debouncedListItem)
-  }, [debouncedListItem, updateActiveListItem])
+  }, [debouncedListItem, listItem, updateActiveListItem])
 
   // useEffect(() => {
   //   updateActiveListItem({
@@ -102,6 +103,7 @@ export const ListItem: FC<Props> = ({ index, item }) => {
               marginRight: '0.5rem',
             }}
             onChange={handleInputChange}
+            onBlur={cancel}
           />
           <div
             style={{
@@ -136,6 +138,7 @@ export const ListItem: FC<Props> = ({ index, item }) => {
                 name="quantity"
                 value={listItem.quantity}
                 onChange={handleInputChange}
+                onBlur={cancel}
               />
             </div>
 
@@ -172,6 +175,7 @@ export const ListItem: FC<Props> = ({ index, item }) => {
                 name="name"
                 value={listItem.name}
                 onChange={handleInputChange}
+                onBlur={cancel}
               />
             </div>
           </div>
